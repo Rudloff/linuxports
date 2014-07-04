@@ -4355,15 +4355,6 @@ proc macports::revupgrade_scanandrebuild {broken_port_counts_name opts} {
                     set fpath [$f actual_path]
                     ui_debug "Updating binary flag for file $i of ${files_count}: $fpath"
                     incr i
-
-                    if {0 != [catch {$f binary [fileIsBinary $fpath]} fileIsBinaryError]} {
-                        # handle errors (e.g. file not found, permission denied) gracefully
-                        if {$fancy_output} {
-                            $revupgrade_progress intermission
-                        }
-                        ui_warn "Error determining file type of `$fpath': $fileIsBinaryError"
-                        ui_warn "A file belonging to the `[[registry::entry owner $fpath] name]' port is missing or unreadable. Consider reinstalling it."
-                    }
                 }
             } catch {*} {
                 ui_error "Updating database of binaries failed"

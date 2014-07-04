@@ -2305,7 +2305,7 @@ proc mportsync {{optionslist {}}} {
                     } else {
                         set git_action "pull --rebase"
                     }
-                    set git_commandline "pushd $portdir ; $git_cmd $git_action ; popd"
+                    set git_commandline "bash -c 'pushd $portdir ; $git_cmd $git_action ; popd'"
                     ui_debug $git_commandline
                     if {
                         [catch {

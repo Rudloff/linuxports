@@ -2518,7 +2518,7 @@ proc mportsync {{optionslist {}}} {
                 }
 
                 set tar [macports::findBinary tar $macports::autoconf::tar_path]
-                if {[catch {system "cd ${destdir}/.. && $tar $verboseflag $extflag -xf $filename"} error]} {
+                if {[catch {system "cd ${destdir}/.. && $tar $verboseflag $extflag -C ports --strip-components 1 -xf $filename"} error]} {
                     ui_error "Extracting $source failed ($error)"
                     incr numfailed
                     continue
